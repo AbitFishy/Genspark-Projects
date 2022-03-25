@@ -21,7 +21,7 @@ class DragonCaveTest {
         String userInput = "1\n";
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(in);
-            Assertions.assertDoesNotThrow(()->dc.Play());
+        Assertions.assertDoesNotThrow(()->dc.Play());
 
     }
 

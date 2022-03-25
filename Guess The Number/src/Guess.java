@@ -6,23 +6,27 @@ import java.util.Objects;
 public class Guess {
     public Guess()
     {
+        secretNum  = (int)(20 * Math.random()) + 1;
     }
-    final private int secretNum = (int)(20 * Math.random()) + 1;
-    private boolean correctlyGuessed = false;
+    Guess(int Num){
+        secretNum = Num;
+    }
+    final protected int secretNum;
+    boolean correctlyGuessed = false;
     final private int maxAttempts = 6;
     private int attemptsRemaining = maxAttempts;
     final private  BufferedReader br = new BufferedReader( new InputStreamReader(System.in));
-    private String playerName = "";
+    String playerName = "";
     final private String INVALID_NAME = "InvalidName";
 
-    private int processGuess(int guess){
+    int processGuess(int guess){
         if (guess > 20 || guess < 1){
             return 3;
         }
         return Integer.compare(guess, secretNum);
     }
 
-    private void intro(){
+    void intro(){
         System.out.println("Hello! What is your name?");
         int numReadAttempts = 5;
         do {
@@ -30,7 +34,7 @@ public class Guess {
                 playerName = br.readLine();
                 break;
             } catch (IOException ioe) {
-                if (numReadAttempts-- > 0) {
+                if (--numReadAttempts > 0) {
                     System.out.println("Please Enter a Valid Name");
                 } else {
                     System.out.println("Too Many Invalid Attempts");
@@ -49,7 +53,7 @@ public class Guess {
         intro();
         while (!correctlyGuessed && attemptsRemaining-- > 0){
             System.out.println("Take a guess.");
-            int guess = 0;
+            int guess;
             try {
                 guess = Integer.parseInt(br.readLine());
             }
