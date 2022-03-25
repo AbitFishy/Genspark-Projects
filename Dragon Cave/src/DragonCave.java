@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.time.Clock;
 import java.util.concurrent.TimeUnit;
 
 public class DragonCave {
@@ -8,54 +9,62 @@ public class DragonCave {
         goodDragon = rng > .5 ? 1 : 2;
     }
 
-    private int goodDragon;
-    private void Intro() {
+    private void sleep(int sleepFor){
+        if (!actuallySleep){
+            return;
+        }
         try {
-            System.out.println("You are in a land full of dragons.");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("In front of you, you see two caves.");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("In one cave, the dragon is friendly");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("and will share his treasure with you");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("The other dragon is greedy and hungry");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("and will eat you on sight.");
-            TimeUnit.SECONDS.sleep(2);
-            System.out.println("Which cave will you go into?");
             TimeUnit.SECONDS.sleep(2);
         }
-        catch (InterruptedException ie){
+        catch (InterruptedException ie) {
             System.out.println("Whelp! the waiting thread was interrupted! Time to die a painful death");
         }
     }
 
+    private final int goodDragon;
+    protected Clock clock;
+    protected boolean actuallySleep = true;
+    private void Intro() {
+
+            System.out.println("You are in a land full of dragons.");
+            sleep(2);
+            System.out.println("In front of you, you see two caves.");
+            sleep(2);
+            System.out.println("In one cave, the dragon is friendly");
+            sleep(2);
+            System.out.println("and will share his treasure with you");
+            sleep(2);
+            System.out.println("The other dragon is greedy and hungry");
+            sleep(2);
+            System.out.println("and will eat you on sight.");
+            sleep(2);
+            System.out.println("Which cave will you go into?");
+            sleep(2);
+
+    }
+
     private void Suspense(){
-        try{
             System.out.print("You approach the cave");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.print(".");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.print(".");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.println(".");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.print("It is dark and spooky");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.print(".");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.print(".");
-            TimeUnit.SECONDS.sleep(2);
+            sleep(2);
             System.out.println(".");
-            TimeUnit.SECONDS.sleep(1);
+            sleep(1);
             System.out.println("A large dragon jumps out in front of you!");
             System.out.println("He opens he jaws and ...!");
-            TimeUnit.SECONDS.sleep(3);
-    }
-        catch (InterruptedException ie) {
-            System.out.println("Whelp! the waiting thread was interrupted! Time to die a painful death");
-        }
+            sleep(3);
+
+
     }
 
 
