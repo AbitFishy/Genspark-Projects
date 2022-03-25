@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.time.Clock;
 import java.util.concurrent.TimeUnit;
 
 public class DragonCave {
@@ -14,7 +13,7 @@ public class DragonCave {
             return;
         }
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(sleepFor);
         }
         catch (InterruptedException ie) {
             System.out.println("Whelp! the waiting thread was interrupted! Time to die a painful death");
@@ -22,7 +21,6 @@ public class DragonCave {
     }
 
     private final int goodDragon;
-    protected Clock clock;
     protected boolean actuallySleep = true;
     private void Intro() {
 
