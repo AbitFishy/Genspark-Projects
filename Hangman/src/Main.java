@@ -98,14 +98,18 @@ class Hangman {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     char userInput(String message, int mode){
-        while (true) {
+        int attempts =100;
+        while (attempts-- >= 0) {
             System.out.println(message);
             try {
                 String input = br.readLine();
                 if (mode == 0) {
                     if (input.length() > 1) {
                         System.out.println("Hold your horses, too many letters.");
-                    } else if (Character.toUpperCase(input.charAt(0)) >= 'A' ||
+                    } else if (input.length() == 0){
+                        continue;
+                    }
+                    else if (Character.toUpperCase(input.charAt(0)) >= 'A' &&
                             Character.toUpperCase(input.charAt(0)) <= 'Z') {
                         return Character.toUpperCase(input.charAt(0));
                     } else {
@@ -124,9 +128,14 @@ class Hangman {
                 }
             }
             catch (IOException ioe) {
-                //do nothing, get more input
+                System.out.println("IO Exception, Shutting Down");
+                System.exit(1);
             }
         }
+        System.out.println("User has entered an invalid input 100 times, Shutting Down");
+        System.exit(1);
+        //throw new UserInputError("User has entered an invalid input 100 times, Shutting Down");
+        return 'a';
     }
     boolean checkIfLetterInWord(char c){
         return secretWord.contains(String.valueOf(c));
@@ -240,6 +249,7 @@ class Hangman {
             } else if (found) {
                 if (wordlist.get(i).length() > length) {
                     endIndex = i;
+                    break;
                 }
             }
         }
@@ -280,7 +290,7 @@ class Hangman {
 
         } catch(IOException fnfe){
             System.out.println("Problem reading word list");
-            wordlist.add("cat");
+            wordlist.add("CAT");
         }
         wordlist.sort((String x, String y) -> {
             if (x.length() == y.length()){
@@ -290,5 +300,12 @@ class Hangman {
                 return x.length() > y.length() ? 1 : -1;
             }
         });
+    }
+
+}
+
+class UserInputError extends IOException{
+    UserInputError(String message){
+        super(message);
     }
 }
