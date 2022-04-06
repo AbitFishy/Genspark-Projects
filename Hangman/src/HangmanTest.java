@@ -21,8 +21,8 @@ class HangmanTest {
         hm.wordlist.add("BANANACREAMPI");
         hm.secretWord =   hm.generateGuess(0);
 
-        assert hm.play();
-        assert !hm.play();
+        assertTrue( hm.play());
+        assertFalse(hm.play());
     }
 
     @org.junit.jupiter.api.Test
@@ -120,25 +120,25 @@ class HangmanTest {
         hm = new Hangman();
         hm.secretWord = "BANANACREAMPI";
         assert(Objects.equals(hm.showUnGuessedWord(), "_____________"));
-        hm.guessedLetters.append('A');
+        hm.guessedLetters.add('A');
         assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        hm.guessedLetters.append('A');
+        hm.guessedLetters.add('A');
         assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        hm.guessedLetters.append('B');
+        hm.guessedLetters.add('B');
         assert(Objects.equals(hm.showUnGuessedWord(), "BA_A_A___A___"));
-        hm.guessedLetters.append('C');
+        hm.guessedLetters.add('C');
         assert(Objects.equals(hm.showUnGuessedWord(), "BA_A_AC__A___"));
-        hm.guessedLetters.append('M');
+        hm.guessedLetters.add('M');
         assert(Objects.equals(hm.showUnGuessedWord(), "BA_A_AC__AM__"));
-        hm.guessedLetters.append('P');
+        hm.guessedLetters.add('P');
         assert(Objects.equals(hm.showUnGuessedWord(), "BA_A_AC__AMP_"));
-        hm.guessedLetters.append('N');
+        hm.guessedLetters.add('N');
         assert(Objects.equals(hm.showUnGuessedWord(), "BANANAC__AMP_"));
-        hm.guessedLetters.append('R');
+        hm.guessedLetters.add('R');
         assert(Objects.equals(hm.showUnGuessedWord(), "BANANACR_AMP_"));
-        hm.guessedLetters.append('E');
+        hm.guessedLetters.add('E');
         assert(Objects.equals(hm.showUnGuessedWord(), "BANANACREAMP_"));
-        hm.guessedLetters.append('I');
+        hm.guessedLetters.add('I');
         assert(Objects.equals(hm.showUnGuessedWord(), "BANANACREAMPI"));
 
     }
@@ -153,39 +153,39 @@ class HangmanTest {
 
         //A
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: "));
+        assertEquals("_A_A_A___A___", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: ", hm.missedLetters());
         //G
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: G"));
+        assertEquals("_A_A_A___A___", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: G", hm.missedLetters());
         //U
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GU"));
+        assertEquals("_A_A_A___A___", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GU", hm.missedLetters());
         //o
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A___"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GUO"));
+        assertEquals("_A_A_A___A___", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GUO", hm.missedLetters());
         //I
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_A_A_A___A__I"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GUO"));
+        assertEquals("_A_A_A___A__I", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GUO", hm.missedLetters());
         //N
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_ANANA___A__I"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GUO"));
+        assertEquals("_ANANA___A__I", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GUO", hm.missedLetters());
         //7
         //`
         //;
         // \nr
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_ANANA_R_A__I"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GUO"));
+        assertEquals("_ANANA_R_A__I", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GUO", hm.missedLetters());
         //a
         hm.loop();
-        assert(Objects.equals(hm.showUnGuessedWord(), "_ANANA_R_A__I"));
-        assert(Objects.equals(hm.missedLetters(), "Missed Letters: GUO"));
+        assertEquals("_ANANA_R_A__I", hm.showUnGuessedWord());
+        assertEquals("Missed Letters: GUO", hm.missedLetters());
     }
 
     @org.junit.jupiter.api.Test

@@ -1,17 +1,19 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.sql.DataTruncation;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
         Hangman hm = new Hangman();
-        while (hm.play()){
-            ///*empty*/
+        playRecur(hm);
+    }
+    public static void playRecur(Hangman hm){
+        if (hm.play()){
+            playRecur(hm);
         }
-
-
     }
 }
 
@@ -27,10 +29,10 @@ class Hangman {
     int numWrongGuesses = 0;
     boolean win = false;
     String secretWord;
-    char[] checkWord;
+    TreeSet<Character> checkWord;
     final int numGuesses = 9;
 
-    StringBuilder guessedLetters = new StringBuilder();
+    LinkedHashSet<Character> guessedLetters = new LinkedHashSet<>();
     StringBuilder missedLetters = new StringBuilder();
 
 
@@ -41,7 +43,7 @@ class Hangman {
         else{
             numWrongGuesses = 0;
             win = false;
-            guessedLetters= new StringBuilder();
+            guessedLetters= new LinkedHashSet<>();
             missedLetters = new StringBuilder();
         }
         secretWord=  generateGuess(0);
@@ -56,7 +58,11 @@ class Hangman {
         else {
             System.out.println(loseScreen());
         }
-        return userInput("Play Again? (yes or no)",1) == 'y';
+        if (userInput("Play Again? (yes or no)",1) == 'y')
+        {
+            return true;
+        }
+        return false;
     }
 
     private String loseScreen() {
@@ -75,13 +81,10 @@ class Hangman {
         System.out.println(showUnGuessedWord());
         char in = userInput("Guess a Letter:", 0);
         if (checkIfLetterInWord(in)){
-            if (!guessedLetters.toString().contains(String.valueOf(in))) {
-                guessedLetters.append(in);
-            }
+            guessedLetters.add(in);
 
-            char [] cagl = guessedLetters.toString().toCharArray();
-            Arrays.sort(cagl);
-            if (Arrays.compare(cagl, checkWord) == 0){
+            TreeSet<Character> cagl = new TreeSet<>(guessedLetters);
+            if (cagl.equals(checkWord)){
                 win = true;
                 return false;
             }
@@ -98,54 +101,53 @@ class Hangman {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     char userInput(String message, int mode){
-        int attempts =100;
-        while (attempts-- >= 0) {
-            System.out.println(message);
-            try {
-                String input = br.readLine();
-                if (mode == 0) {
-                    if (input.length() > 1) {
-                        System.out.println("Hold your horses, too many letters.");
-                    } else if (input.length() == 0){
-                        continue;
-                    }
-                    else if (Character.toUpperCase(input.charAt(0)) >= 'A' &&
-                            Character.toUpperCase(input.charAt(0)) <= 'Z') {
-                        return Character.toUpperCase(input.charAt(0));
-                    } else {
-                        System.out.println("That was not a letter.");
-                    }
-                } else if (mode == 1) {
-                    if (input.contains( "y")){
-                        return 'y';
-                    }
-                    else {
-                        return 'n';
-                    }
-                }
-                else {
-                    System.out.println("Bad input mode: " + mode);
-                }
-            }
-            catch (IOException ioe) {
-                System.out.println("IO Exception, Shutting Down");
-                System.exit(1);
-            }
-        }
-        System.out.println("User has entered an invalid input 100 times, Shutting Down");
-        System.exit(1);
-        //throw new UserInputError("User has entered an invalid input 100 times, Shutting Down");
-        return 'a';
+        return userInput(message, mode, 1000);
     }
+    char userInput(String message, int mode, int attempts) {
+        if (attempts-- <= 0) {
+            System.out.println("User has entered an invalid input 100 times, Shutting Down");
+            System.exit(1);
+            return ' ';
+        }
+
+        System.out.println(message);
+        try {
+            String input = br.readLine();
+            if (mode == 0) {
+                if (input.length() > 1) {
+                    System.out.println("Hold your horses, too many letters.");
+                } else if (input.length() == 0) {
+                    //continue;
+                } else if (Character.toUpperCase(input.charAt(0)) >= 'A' &&
+                        Character.toUpperCase(input.charAt(0)) <= 'Z') {
+                    return Character.toUpperCase(input.charAt(0));
+                } else {
+                    System.out.println("That was not a letter.");
+                }
+            } else if (mode == 1) {
+                if (input.contains("y")) {
+                    return 'y';
+                } else {
+                    return 'n';
+                }
+            } else {
+                System.out.println("Bad input mode: " + mode);
+            }
+        } catch (IOException ioe) {
+            System.out.println("IO Exception, Shutting Down");
+            System.exit(1);
+        }
+        return userInput(message, mode, attempts);
+    }
+
     boolean checkIfLetterInWord(char c){
         return secretWord.contains(String.valueOf(c));
     }
 
     String showUnGuessedWord(){
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < secretWord.length(); i++){
-            sb.append(guessedLetters.toString().contains(String.valueOf(secretWord.charAt(i))) ?secretWord.charAt(i) : "_");
-        }
+
+        secretWord.chars().mapToObj( c -> guessedLetters.toString().contains(String.valueOf((char)c)) ? sb.append((char)c) : sb.append('_')).collect(Collectors.toList());
         return sb.toString();
     }
 
@@ -173,7 +175,7 @@ class Hangman {
 
 
     String missedLetters(){
-        return "Missed Letters: " + missedLetters;
+        return "Missed Letters: " + missedLetters.toString();
     }
 
     /**
@@ -240,37 +242,21 @@ class Hangman {
     String generateGuess(int length) {
         String result = "";
         boolean found = false;
-        int startIndex = 0;
-        int endIndex = wordlist.size();
-        for (int i = 0; i < wordlist.size(); i++) {
-            if (wordlist.get(i).length() == length && !found) {
-                found = true;
-                startIndex = i;
-            } else if (found) {
-                if (wordlist.get(i).length() > length) {
-                    endIndex = i;
-                    break;
-                }
-            }
-        }
-        if (!found && length == 0){
+
+        var wordChoices = wordlist.stream().filter(w -> w.length() == length || (length == 0)).collect(Collectors.toList());
+
+        if (wordChoices.size() != 0){
             found = true;
         }
 
         if (found) {
-            var subset = wordlist.subList(startIndex, endIndex);
-            int rand = (int) (Math.random() * subset.size());
-            result = subset.get(rand);
-        }
-        StringBuilder cwb = new StringBuilder();
-        for (int i = 0; i < result.length(); i++){
-            if (!cwb.toString().contains( String.valueOf(result.charAt(i))) ){
-                cwb.append( result.charAt(i));
-            }
-        }
-        checkWord = cwb.toString().toCharArray();
-        Arrays.sort(checkWord);
 
+            int rand = (int) (Math.random() * wordChoices.size());
+            result = wordChoices.get(rand);
+
+
+            checkWord = Arrays.stream(result.split("")).map(s -> s.charAt(0)).collect(Collectors.toCollection(TreeSet::new));
+        }
         return result;
     }
 
@@ -282,11 +268,9 @@ class Hangman {
      */
     void readWordFile(String filename){
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filename));
+            BufferedReader bfr = new BufferedReader(new FileReader(filename));
 
-            while (br.ready()) {
-                wordlist.add( br.readLine().toUpperCase());
-            }
+            readRecurse(bfr);
 
         } catch(IOException fnfe){
             System.out.println("Problem reading word list");
@@ -300,6 +284,14 @@ class Hangman {
                 return x.length() > y.length() ? 1 : -1;
             }
         });
+    }
+
+    void readRecurse(BufferedReader bfr) throws IOException {
+        String line;
+        if (bfr.ready() && (line = bfr.readLine()) != null){
+            wordlist.add( line.toUpperCase());
+            readRecurse(bfr);
+        }
     }
 
 }
