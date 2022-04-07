@@ -1,0 +1,3 @@
+Goblin 0 0
+Goblin 2 8
+Goblin 0 6
