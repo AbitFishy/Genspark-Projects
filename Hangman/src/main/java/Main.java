@@ -1,5 +1,7 @@
+import org.apache.commons.lang3.StringUtils;
 import java.io.*;
-import java.sql.DataTruncation;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,11 +28,12 @@ class Hangman {
         readWordFile(fileName);
     }
     boolean firstPlay = true;
-    int numWrongGuesses = 0;
+    //int numWrongGuesses = 0;
     boolean win = false;
     String secretWord;
     TreeSet<Character> checkWord;
     final int numGuesses = 9;
+    protected static final Path savefile = Path.of( "savefile.txt");
 
     LinkedHashSet<Character> guessedLetters = new LinkedHashSet<>();
     StringBuilder missedLetters = new StringBuilder();
@@ -39,30 +42,32 @@ class Hangman {
     boolean play(){
         if (firstPlay){
             System.out.println(title);
+            askForName();
         }
         else{
-            numWrongGuesses = 0;
+            //numWrongGuesses = 0;
             win = false;
             guessedLetters= new LinkedHashSet<>();
             missedLetters = new StringBuilder();
         }
-        secretWord=  generateGuess(0);
+        if (!checkAndRecoverGame()) {
+            secretWord = generateGuess(0);
+        }
         firstPlay = false;
 
         while (loop()){
             //empty
         }
+
         if (win){
             System.out.println(winScreen());
         }
         else {
             System.out.println(loseScreen());
         }
-        if (userInput("Play Again? (yes or no)",1) == 'y')
-        {
-            return true;
-        }
-        return false;
+        deleteSaveGame();
+        System.out.println(checkAndRecordHighScore(missedLetters.length()));
+        return userInput("Play Again? (yes or no)", 1) == 'y';
     }
 
     private String loseScreen() {
@@ -76,7 +81,8 @@ class Hangman {
 
 
     boolean loop(){
-        System.out.print(drawGallows(numWrongGuesses));
+        //System.out.print(drawGallows(numWrongGuesses));
+        System.out.print(drawGallows(missedLetters.length()));
         System.out.println(missedLetters());
         System.out.println(showUnGuessedWord());
         char in = userInput("Guess a Letter:", 0);
@@ -91,12 +97,168 @@ class Hangman {
         }
         else{
             missedLetters.append(in);
-            if (++numWrongGuesses >= numGuesses){
+            //if (++numWrongGuesses >= numGuesses){
+            if (missedLetters.length() >= numGuesses){
                 win = false;
                 return false;
             }
         }
+
+
+        saveGame();
         return true;
+    }
+
+    protected void saveGame(){   //do not trim missedLetters()
+        String game = drawGallows(missedLetters.length()).trim() + "\n%\n" + missedLetters() + "\n%\n" +
+                StringUtils.join( guessedLetters,"," ) + "\n%\n" + secretWord;
+        try {
+            Files.writeString(savefile, game);
+        } catch (IOException e) {
+            System.err.println("Could Not Save Game to " + savefile);
+            e.printStackTrace();
+        }
+    }
+    protected void deleteSaveGame(){
+        try{
+            Files.deleteIfExists(savefile);
+        }
+        catch (IOException e){
+            System.err.println("Could Not Delete Save File " + savefile);
+            e.printStackTrace();
+        }
+    }
+    protected boolean checkAndRecoverGame(){
+
+        try {
+            if (Files.exists(savefile) && Files.size(savefile)  != 0){
+
+                return deserialize(Files.readString(savefile));
+            }
+        } catch (IOException e) {
+            System.err.println("Savefile Found But Not Readable");
+        }
+        return false;
+    }
+
+    protected boolean deserialize(String game){
+        try {
+            var parts = game.split("\n%\n");
+            missedLetters = new StringBuilder();
+            if (parts[1].indexOf(':') + 2 <= parts[1].length()) {
+                missedLetters.append(parts[1],parts[1].indexOf(':') + 2, parts[1].length());
+            }
+            if (parts[2].length() > 0) {
+                var parts2 = parts[2].split(",");
+                var ignore = Arrays.stream(parts2).reduce("", (u, s) -> {
+                    if (s.length() == 1) {
+                        guessedLetters.add(s.charAt(0));
+                    }
+                    return s;
+                });
+            }
+            secretWord = parts[3];
+            checkWord = Arrays.stream(secretWord.split("")).map(s -> s.charAt(0)).collect(Collectors.toCollection(TreeSet::new));
+            return true;
+        }
+        catch (Exception ioobe){
+            System.err.println("Save file error");
+            return false;
+        }
+    }
+    String playerName = "";
+    protected static final String highScoreDelim = "'";
+    protected void askForName(){
+        System.out.println("What is your name?");
+
+        try{
+            var line = br.readLine();
+            line = line.replace(highScoreDelim, "").replace("\n", "").replace(highScoreDelim,"'");
+            if (line.length() > 20) {
+                line = line.substring(0,20);
+            }
+            playerName = line.trim();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            playerName= "NULL";
+        }
+        System.out.println("Welcome " + playerName+ "!");
+    }
+
+    static protected final Path highScoreFile = Path.of("highscore.txt");
+
+    protected String checkAndRecordHighScore(int score){
+        StringBuilder hssb = new StringBuilder();
+        try{
+            TreeMap<String,Integer> hstable = new TreeMap<>();
+            if (!Files.exists(highScoreFile)) {
+                hssb.append("You Have The First Score Of ").append(score).append("!");
+            } else {
+                var is = Files.lines(highScoreFile);
+                var ignore = is.map( f -> {
+                           var s = f.split(highScoreDelim);
+                            hstable.put(s[0],Integer.valueOf(s[1]));
+                            return 0;
+                        }).reduce((x,y) -> 0);
+                TreeSet<Integer> scores = new TreeSet<>(hstable.values());
+                var highScore = scores.first();
+                HashSet<String> highScores = new HashSet<>();
+                hstable.entrySet().stream().peek(e -> {
+                    if (Objects.equals(e.getValue(), highScore)){
+                        highScores.add(e.getKey());
+                    }
+                }).reduce( (a,b) -> a);
+
+                if (score < highScore) {
+                    if (highScores.contains(playerName)) {
+                        hssb.append("You Beat Your Old Record Of ").append(highScore).append("!");
+                        if (highScores.size() > 1){
+                            hssb.append(" Tied With ");
+
+                        }
+                    } else {
+                        hssb.append("You Beat The High Score Of ").append(highScore).append("! Set By ");
+
+
+                    }
+                    formatTiedPlayers(highScores, hssb);
+                }
+                else if (score == highScore) {
+                    if (highScores.contains(playerName)){
+                        hssb.append("You Tied Your Previous Record Of ").append(highScore).append("!");
+                        if (highScores.size() >1) {
+                                hssb.append(" Along With ");
+                        }
+                    }
+                    else {
+                        hssb.append("You Tied The High Score Of ").append(highScore).append("! Set By ");
+
+                    }
+                    formatTiedPlayers(highScores, hssb);
+                }
+            }
+            hstable.put(playerName,score);
+            StringBuilder fout = new StringBuilder();
+            var ignore = hstable.entrySet().stream().map((e) -> fout.append(e.getKey()).append(highScoreDelim).append(e.getValue()).append("\n")).reduce( (a,b) -> a);
+            Files.writeString(highScoreFile, fout.toString());
+        } catch (IOException e) {
+            hssb.append("Cannot Read/Write HighScores");
+        }
+        return hssb.toString();
+    }
+
+    private void formatTiedPlayers(HashSet<String> highScores, StringBuilder hssb) {
+        highScores.remove(playerName);
+        if (highScores.size() > 0) {
+            String lastHigh = (String) highScores.toArray()[0];
+            highScores.remove(lastHigh);
+            hssb.append(StringUtils.join(highScores, ", "));
+            if (highScores.size() > 0) {
+                hssb.append(" and ");
+            }
+            hssb.append(lastHigh).append("!");
+        }
     }
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -146,7 +308,7 @@ class Hangman {
 
     String showUnGuessedWord(){
         StringBuilder sb = new StringBuilder();
-
+        //vvv ignore output vvv
         secretWord.chars().mapToObj( c -> guessedLetters.toString().contains(String.valueOf((char)c)) ? sb.append((char)c) : sb.append('_')).collect(Collectors.toList());
         return sb.toString();
     }
@@ -296,8 +458,9 @@ class Hangman {
 
 }
 
+/*
 class UserInputError extends IOException{
     UserInputError(String message){
         super(message);
     }
-}
+}*/
