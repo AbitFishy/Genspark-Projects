@@ -1,3 +1,8 @@
+package com.mygdx.game.humanvsgoblin.game;
+
+
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -25,9 +30,10 @@ public class Inventory {
     }
 
     <T extends Item> ArrayList<T> retrieveAllOfType(Class<T> itemClass){
-
-                var a = stuff.stream().filter(i -> itemClass.isAssignableFrom(i.getClass())).collect(Collectors.toList());
-        return (ArrayList<T>) new ArrayList<Item> (a);
+        return stuff.stream().filter(i -> itemClass.isAssignableFrom(i.getClass())).map(s -> (T) s).collect(Collectors.toCollection(ArrayList::new));
+        //return (ArrayList<T>) new ArrayList<T> (a);
+                //var a = stuff.stream().filter(i -> itemClass.isAssignableFrom(i.getClass())).collect(Collectors.toList());
+        //return (ArrayList<T>) new ArrayList<T> (a);
     }
 
     Item retrieveItem(String name){
@@ -43,5 +49,23 @@ public class Inventory {
         }
         return ret;
     }
+/*
+    @Override
+    public String toJson() {
+        return toJsonObj().toString();
+    }
+
+    @Override
+    public void toJson(Writer writer) throws IOException {
+        toJsonObj().toJson(writer);
+    }
+    protected JsonObject toJsonObj() {
+        JsonObject jobj = new JsonObject();
+        jobj.put("size",size);
+        for (var item : stuff){
+            jobj.put("item", item.toJson());
+        }
+        return jobj;
+    }*/
 }
 

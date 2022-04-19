@@ -1,0 +1,4383 @@
+{
+enemies: [
+	{
+		class: com.mygdx.game.humanvsgoblin.game.Goblin
+		health: 50
+		attack: 10
+		defense: 13
+		movePriority: 2
+		inventory: {}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 3
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: goblin.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+		moveSpeed: 30
+		critRate: 0.11
+		allegiance: 2
+		enemiesWith: 2
+	}
+]
+ground: [
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 1
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 2
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 3
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 4
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 5
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 6
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 7
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 8
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 1
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 2
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 3
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 4
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 5
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 6
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 7
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 8
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+	{
+		class: com.mygdx.game.humanvsgoblin.game.PassableLand
+		coords: {
+			x: 9
+			y: 9
+		}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 1
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: mapTile_022.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGB888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+	}
+]
+player: [
+	{
+		class: com.mygdx.game.humanvsgoblin.game.Human
+		health: 150
+		coords: {
+			x: 5
+			y: 5
+		}
+		inventory: {}
+		sprite: {
+			texture: {
+				glTarget: 3553
+				glHandle: 2
+				minFilter: Nearest
+				magFilter: Nearest
+				uWrap: ClampToEdge
+				vWrap: ClampToEdge
+				anisotropicFilterLevel: 1
+				data: {
+					class: com.badlogic.gdx.graphics.glutils.FileTextureData
+					file: {
+						class: com.badlogic.gdx.backends.lwjgl3.Lwjgl3FileHandle
+						file: {
+							path: knight.png
+						}
+						type: Internal
+					}
+					width: 64
+					height: 64
+					format: RGBA8888
+					pixmap: null
+					useMipMaps: false
+					isPrepared: false
+				}
+			}
+			u2: 1
+			v2: 1
+			regionWidth: 64
+			regionHeight: 64
+			vertices: [ 0, 0, -1.7014117E38, 0, 1, 0, 0, -1.7014117E38, 0, 0, 0, 0, -1.7014117E38, 1, 0, 0, 0, -1.7014117E38, 1, 1 ]
+			width: 64
+			height: 64
+			originX: 32
+			originY: 32
+		}
+		moveSpeed: 100
+		allegiance: 1
+		enemiesWith: 1
+	}
+]
+}

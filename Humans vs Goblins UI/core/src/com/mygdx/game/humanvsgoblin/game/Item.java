@@ -1,3 +1,5 @@
+package com.mygdx.game.humanvsgoblin.game;
+
 public interface Item extends Entity {
     int getWeight();
     int getSize();

@@ -1,3 +1,5 @@
+package com.mygdx.game.humanvsgoblin.game;
+
 public class Shield extends FakeDefenseItem {
     Shield(){
         this(10);
