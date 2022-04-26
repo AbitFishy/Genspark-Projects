@@ -3,9 +3,6 @@ package com.mygdx.game.humanvsgoblin.game;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
-import java.io.Writer;
-
 public class Coords implements Comparable<Coords> {
     public Coords() {
         x = y = z = 0;
@@ -63,6 +60,11 @@ public class Coords implements Comparable<Coords> {
     public int hashCode() {
         // return current object's id as hashCode
         return (x+1)*(y+10)*(100+z);
+    }
+
+    @Override
+    public String toString(){
+        return "(" + x + "," + y + "," + z + ")";
     }
 /*    @Override
     public String toJson() {

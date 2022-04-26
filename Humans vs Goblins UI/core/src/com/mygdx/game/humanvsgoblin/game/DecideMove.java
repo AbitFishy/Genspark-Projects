@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DecideMove {
     protected Sprite pathOverlay;
@@ -24,15 +25,21 @@ public class DecideMove {
 
     void newMove(Coords position){
         currentPosition = position;
-        path.clear();
+        targetPosition = Coords.nullCoords;
+        path = new ArrayList<>();
         path.add(currentPosition);
     }
 
-    ArrayList<Coords> getPath(){
-        if (!targetPosition.equals(Coords.nullCoords)){
+   List<Coords> getPath(){
+/*        if (!targetPosition.equals(Coords.nullCoords)){
             path.add(targetPosition);
+        }*/
+        if (path.size() >1) {
+            return path.subList(1, path.size());
         }
-        return path;
+        else{
+            return new ArrayList<>();
+        }
     }
 
     Coords getCurrentProspectivePosition(){
@@ -103,7 +110,8 @@ public class DecideMove {
         }
         else {
             var prospective = applyDirection(attackCoords, direction);
-            if (dungeon.world.get(prospective).stream().anyMatch(attacker::isEnemy)) {
+            var tile = dungeon.world.get(prospective);
+            if (tile != null && tile.stream().anyMatch(attacker::isEnemy)) {
                 targetPosition = prospective;
             }
         }

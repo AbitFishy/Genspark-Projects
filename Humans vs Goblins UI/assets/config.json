@@ -17,13 +17,13 @@ players: [
 enemies: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 5
-		attack: 10
-		defense: 13
+		health: 50
 		coords: {
 			x: 5
 			y: 6
 		}
+		attack: 10
+		defense: 13
 		movePriority: 2
 		inventory: {}
 		sprite: goblin.png
@@ -812,12 +812,6 @@ grounds: [
 			y: 9
 		}
 		sprite: mapTile_022.png
-	}
-]
-items: [
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Sword
-		sprite: sword.png
 	}
 ]
 }

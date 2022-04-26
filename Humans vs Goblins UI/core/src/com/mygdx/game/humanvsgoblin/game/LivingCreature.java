@@ -1,11 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
-
-import java.io.IOException;
-import java.io.Writer;
-
 public class LivingCreature implements Creature, HasInventory{
 
 
@@ -43,7 +37,8 @@ public class LivingCreature implements Creature, HasInventory{
     protected int movePriority;
     protected Inventory inventory;
     protected float attackBonus = 1.5f;
-    protected Sprite sprite = new Sprite();
+    //protected Sprite sprite = new Sprite();
+    protected String sprite;
     protected int moveDistance;
     protected int moveSpeed = 0;
     protected float critDam = 1.5f;
@@ -144,6 +139,11 @@ public class LivingCreature implements Creature, HasInventory{
         return health <= 0;
     }
 
+    @Override
+    public boolean isInanimateObject() {
+        return false;
+    }
+
     int allegiance;
     int enemiesWith;
 
@@ -175,16 +175,23 @@ public class LivingCreature implements Creature, HasInventory{
 
     @Override
     public boolean canShareTileWith(Entity other) {
-        return !(other instanceof LivingCreature);
+        if (other instanceof LivingCreature){
+            if (this.equals(other)){
+                return true;
+            }
+            return false;
+        }
+         return !(other.isBlocking(this));
+
     }
 
     @Override
-    public Sprite getSprite() {
+    public String getSprite() {
         return sprite;
     }
 
     @Override
-    public void setSprite(Sprite sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 

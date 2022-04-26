@@ -13,14 +13,15 @@ public interface Entity{
     char symbol = '-';
     ConflictData conflict(Entity other, boolean attackerOrDefender);
     boolean isDead();
+    boolean isInanimateObject();
 
     boolean isAlly(Entity other);
     boolean isEnemy(Entity other);
     boolean isBlocking(Entity other);
     boolean canShareTileWith(Entity other);
 
-    Sprite getSprite();
-    void setSprite(Sprite sprite);
+    String getSprite();
+    void setSprite(String sprite);
 
     char getDisplayName();
 

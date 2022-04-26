@@ -1,7 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class World {
 
@@ -17,6 +17,12 @@ public class World {
     protected  final Dungeon dungeon;
     protected Texture texture;
     protected int tileSize = 64;
+
+    public void remove(Item toBeRemoved) {
+        diedThisRound.add(toBeRemoved);
+    }
+
+    protected enum MoveOrAttack {MOVE, ATTACK,}
 
     World(Dungeon dungeon, int x, int y){
 //        var sg = new Entity[x][];
@@ -39,16 +45,15 @@ public class World {
         this.x = x;
         this.y = y;
         this.dungeon = dungeon;
-        texture = new Texture(Gdx.files.internal("mapTile_022.png"));
 
         //grid.stream().flatMap(ArrayList::stream).forEach(e-> e.add(new PassableLand(new Sprite(texture ))));
-        for (int j = y -1; j >= 0; j--){
+        /*for (int j = y -1; j >= 0; j--){
             for (int i = 0; i < x; i++){
-                var s = new Sprite(texture);
+                var s = "mapTile_022.png";
                 //s.scale(.5f);
                 grid.get(i).get(j).add(new PassableLand(s, new Coords(i,j)));
             }
-        }
+        }*/
     }
 
 
@@ -67,15 +72,18 @@ public class World {
     }*/
     public boolean canMoveHere(Entity mover, Coords destination){
         var dests = get(destination);
+        if (dests == null){
+            return false;
+        }
         return dests.stream().allMatch(d ->
                 d.canShareTileWith(mover));
     }
 
-    public void moveEntity(Entity entity, Coords toCoords){
+    public void moveEntity(Entity entity, Coords fromCoords, Coords toCoords, World.MoveOrAttack moa){
         //TODO mark if move is excluded from fights
         if (entity != null){
             if (validSpace(entity.getCoords())){
-                toBeMoved.add(new Pair<>(entity,toCoords));
+                toBeMoved.add(new Actions(entity, fromCoords,toCoords, moa));
             }
 
         }
@@ -83,7 +91,7 @@ public class World {
     }
     public void addEntity(Entity entity, Coords toCoords){
         if (entity != null){
-            toBeMoved.add(new Pair<>(entity,toCoords));
+            toBeMoved.add(new Actions(entity, toCoords,toCoords, MoveOrAttack.MOVE));
         }
     }
     protected boolean validSpace(Coords coords){
@@ -94,7 +102,7 @@ public class World {
     }
 
     protected ArrayList<ArrayList<ArrayList<Entity>>> grid;
-    protected ArrayList<Pair<Entity,Coords>> toBeMoved;
+    protected ArrayList<Actions> toBeMoved;
 /*
         if ((grid[toX][toY] == null) ){
             if (grid[fromX][fromY] != null){
@@ -138,88 +146,147 @@ public class World {
         }
     }
 
+    private HashSet<Entity> diedThisRound = new HashSet<>();
+
     public HashSet<Entity> move(){
         //toBeMoved.sort(Comparator.comparingInt(lhs -> lhs.first.getMovePriority()));
 
-        toBeMoved.sort((lhs,rhs) -> -1 * Integer.compare(lhs.first.getMovePriority(), rhs.first.getMovePriority()));
+        toBeMoved.sort((lhs,rhs) -> -1 * Integer.compare(lhs.entity.getMovePriority(), rhs.entity.getMovePriority()));
 
         HashSet<Entity> dead = new HashSet<>();
+        HashSet<Entity> newEnts= new HashSet<>();
 
         for (var iter = toBeMoved.listIterator(); iter.hasNext(); ){
-            Pair<Entity, Coords> p = iter.next();
+            var p = iter.next();
             iter.remove();
-            Entity e1 = p.first;
-            ArrayList<Entity> toSquare = get(p.second);
+            Entity e1 = p.entity;
+            ArrayList<Entity> toSquare = get(p.destination);
             if (dead.contains(e1)){
                 continue;
             }
+
             boolean spaceBlocked = false;
 
             for (var innerIter = toSquare.listIterator(); innerIter.hasNext();) {
                 Entity e2 = innerIter.next();
-
+                //dead = (HashSet<Entity>) dead.stream().filter(e -> !e.isInanimateObject()).collect(Collectors.toSet());
                 if (dead.contains(e2)) {
                     e2 = null;
 
                 }
 
-                if (e2 == null) {
-                    innerIter.remove();
-                } else {
-                    //if (e2.isBlocking(e1)) {
-                        if (e1.isAlly(e2)){
-                            spaceBlocked = true;
-                        }
-                        else {
+                    if (e2 == null) {
+                            innerIter.remove();
+
+                    } else {
+                        if (p.moa == MoveOrAttack.ATTACK) {
+/*                            if (e1.isAlly(e2)) {
+                                spaceBlocked = true;
+
+                            } else {*/
+
+
                             switch (dungeon.Conflict(e1, e2)) {
                                 case defenderDied:
                                     //set(p.second.x, p.second.y, e1);
-                                    Item drop = Dungeon.getDrop(e2);
+                                    Item drop = dungeon.getDrop(e2);
                                     if (drop != null) {
-                                        innerIter.add(drop);
-                                        innerIter.previous();
+                                        drop.setCoords(e2.getCoords());
+                                        dungeon.getLastFightData().drop = drop;
                                     }
-                                    dead.add(e2);
+                                    addIfReallyDead(dead, e2);
                                     break;
                                 case bothLived:
-                                    if (!(e2 instanceof  PassableLand)) {
-                                        spaceBlocked = true;
-                                    }
                                     break;
                                 case bothDied:
-                                    dead.add(e1);
-                                    dead.add(e2);
+                                    addIfReallyDead(dead, e1);
+                                    addIfReallyDead(dead, e2);
                                     break;
                                 case attackerDied:
-                                    spaceBlocked = true;
-                                    dead.add(e1);
+                                    //spaceBlocked = true;
+                                    addIfReallyDead(dead, e1);
+                            }
+                            if (p.fightInfo == null) {
+                                p.fightInfo = new ArrayList<>();
+                            }
+                            p.fightInfo.add(dungeon.getLastFightData());
+                            if (!p.fightOccurred) {
+                                p.fightOccurred = p.fightInfo.get(p.fightInfo.size() - 1).fightOccurred;
+                            }
+
+
+                        } else { //if just moving
+                            if (!e1.canShareTileWith(e2)) {
+                                spaceBlocked = true;
+                                p.moveBlocked = true;
+                                p.moveBlockedBy = e2;
+                            } else {
+                                if (e2 instanceof Item) {
+                                    dungeon.Conflict(e1, e2);
+                                    p.fightInfo.add(dungeon.getLastFightData());
+                                    p.pickupItemOpportunity = true;
+                                    p.itemToPickUp = (Item) e2;
+                                }
 
                             }
+
                         }
-                    //}
-                }
+                    }
+
             }
+
+            dungeon.addAction(p);
             toSquare.removeAll(dead);
             if (dead.contains(e1)){
                 get(e1.getCoords()).remove(e1);
             }
             else if (!spaceBlocked){
-                get(e1.getCoords()).remove(e1);
-                set(e1.getCoords(),e1);
+                p.moveSuccess = true;
+                //set(e.getCoords(), e);
             }
 
         }
+        //TODO remove dead from calculations here, but keep them *somewhere* so they
+        //TODO still display until their death is shown/(animated)
+        diedThisRound.addAll(dead);
+        newEnts.forEach(e -> moveEntity(e,e.getCoords(),e.getCoords(),MoveOrAttack.MOVE));
         return dead;
+    }
+
+    private void addIfReallyDead( Set<Entity> theDead,Entity entity){
+        if (!entity.isInanimateObject()){
+            theDead.add(entity);
+        }
     }
 
     public void displayGrid(SpriteBatch batch) {
 
         grid.stream().flatMap(ArrayList<ArrayList<Entity>>::stream).flatMap(ArrayList<Entity>::stream)
                 .sorted(Comparator.comparingInt(Entity::getMovePriority)).forEach(d-> {
-                    Sprite s = d.getSprite();
-                    s.setPosition(d.getCoords().x * tileSize,d.getCoords().y * tileSize);
-                    s.draw(batch);
+                    displaySprite(batch, d);
                 });
 
+    }
+
+    public void displayDead(SpriteBatch batch){
+        diedThisRound.forEach(d -> displaySprite(batch, d));
+    }
+    public void clearDead(){
+        diedThisRound.forEach(this::removeFromGrid);
+        diedThisRound.clear();
+    }
+    public void clearDead(Entity dead){
+        removeFromGrid(dead);
+        diedThisRound.remove(dead);
+    }
+
+    private void removeFromGrid(Entity dead){
+        get(dead.getCoords()).remove(dead);
+    }
+
+    protected void displaySprite(SpriteBatch batch, Entity d) {
+        Sprite s = dungeon.spriteManager.retrieveSprite(d.getSprite());
+        s.setPosition(d.getCoords().x * tileSize, d.getCoords().y * tileSize);
+        s.draw(batch);
     }
 }

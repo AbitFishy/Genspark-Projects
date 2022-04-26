@@ -3,15 +3,18 @@ package com.mygdx.game.humanvsgoblin.game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class PassableLand implements Entity {
-
-    public PassableLand(Sprite sprite, Coords coords){
+    public PassableLand(){
+        this.sprite = null;
+        this.coords = null;
+    }
+    public PassableLand(String sprite, Coords coords){
         this.sprite = sprite;
         this.coords = coords;
     }
 
     @Override
     public String getName() {
-        return "Land";
+        return "PassableLand";
     }
 
     @Override
@@ -45,6 +48,11 @@ public class PassableLand implements Entity {
     }
 
     @Override
+    public boolean isInanimateObject() {
+        return true;
+    }
+
+    @Override
     public boolean isAlly(Entity other) {
         return false;
     }
@@ -64,19 +72,19 @@ public class PassableLand implements Entity {
         return true;
     }
 
-    protected Sprite sprite = new Sprite();
+    protected String sprite ;
     @Override
-    public Sprite getSprite() {
+    public String getSprite() {
         return sprite;
     }
 
     @Override
-    public void setSprite(Sprite sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 
     @Override
     public char getDisplayName() {
-        return ' ';
+        return '_';
     }
 }

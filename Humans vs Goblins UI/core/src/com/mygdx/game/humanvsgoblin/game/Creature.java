@@ -1,7 +1,6 @@
 package com.mygdx.game.humanvsgoblin.game;
 
 public interface Creature extends Entity {
-   //enum Species();
     int getHealth();
 
     /**

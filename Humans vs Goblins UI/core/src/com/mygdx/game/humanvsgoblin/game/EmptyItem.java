@@ -15,7 +15,7 @@ public class EmptyItem implements Item {
     protected int weight =0;
     protected int size =0;
     protected int useTime =0;
-    protected Sprite sprite = new Sprite();
+    protected String sprite;// = new Sprite();
     @Override
     public String getName() {
         return name;
@@ -57,6 +57,11 @@ public class EmptyItem implements Item {
     }
 
     @Override
+    public boolean isInanimateObject() {
+        return true;
+    }
+
+    @Override
     public boolean isAlly(Entity other) {
         return false;
     }
@@ -77,12 +82,12 @@ public class EmptyItem implements Item {
     }
 
     @Override
-    public Sprite getSprite() {
+    public String getSprite() {
         return sprite;
     }
 
     @Override
-    public void setSprite(Sprite sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 

@@ -1,5 +1,5 @@
 {
-players: [
+Player: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Human
 		health: 150
@@ -14,16 +14,12 @@ players: [
 		enemiesWith: 1
 	}
 ]
-enemies: [
+Enemies: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 5
+		health: 50
 		attack: 10
 		defense: 13
-		coords: {
-			x: 5
-			y: 6
-		}
 		movePriority: 2
 		inventory: {}
 		sprite: goblin.png
@@ -33,7 +29,7 @@ enemies: [
 		enemiesWith: 2
 	}
 ]
-grounds: [
+Ground: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.PassableLand
 		coords: {}
@@ -812,12 +808,6 @@ grounds: [
 			y: 9
 		}
 		sprite: mapTile_022.png
-	}
-]
-items: [
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Sword
-		sprite: sword.png
 	}
 ]
 }

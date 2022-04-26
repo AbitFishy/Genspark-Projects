@@ -14,8 +14,8 @@ public class FakeAttackItem implements AttackItem {
     protected int size =0;
     protected int useTime =0;
 
-    Coords coords = new Coords(-1,-1);
-    protected Sprite sprite = new Sprite();
+    Coords coords = Coords.nullCoords;
+    protected String sprite;
 
     @Override
     public String toString(){
@@ -72,6 +72,11 @@ public class FakeAttackItem implements AttackItem {
     }
 
     @Override
+    public boolean isInanimateObject() {
+        return true;
+    }
+
+    @Override
     public boolean isAlly(Entity other) {
         return false;
     }
@@ -92,12 +97,12 @@ public class FakeAttackItem implements AttackItem {
     }
 
     @Override
-    public Sprite getSprite() {
+    public String getSprite() {
         return sprite;
     }
 
     @Override
-    public void setSprite(Sprite sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 

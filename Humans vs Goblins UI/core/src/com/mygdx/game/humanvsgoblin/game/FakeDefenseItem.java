@@ -9,12 +9,12 @@ public class FakeDefenseItem implements  DefenseItem{
 
     protected int defense =0;
     protected String name;
-    protected Coords coords;
+    protected Coords coords = Coords.nullCoords;
     protected int movePriority =0;
     protected int weight =0;
     protected int size =0;
     protected int useTime =0;
-    protected Sprite sprite = new Sprite();
+    protected String sprite;
 
     @Override
     public String toString(){
@@ -62,6 +62,11 @@ public class FakeDefenseItem implements  DefenseItem{
     }
 
     @Override
+    public boolean isInanimateObject() {
+        return true;
+    }
+
+    @Override
     public boolean isAlly(Entity other) {
         return false;
     }
@@ -82,12 +87,12 @@ public class FakeDefenseItem implements  DefenseItem{
     }
 
     @Override
-    public Sprite getSprite() {
+    public String getSprite() {
         return sprite;
     }
 
     @Override
-    public void setSprite(Sprite sprite) {
+    public void setSprite(String sprite) {
         this.sprite = sprite;
     }
 

@@ -2,17 +2,14 @@ package com.mygdx.game.humanvsgoblin.game;
 
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.*;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
+
+import java.lang.StringBuilder;
 import java.util.*;
 import java.util.Queue;
 import java.util.stream.Collectors;
@@ -25,18 +22,24 @@ public class Dungeon {
     protected  static final Set<String> WEST_LINES = Set.of("west", "WEST", "West", "W", "w");
     protected  static final Set<String> EAST_LINES = Set.of("east", "EAST", "East", "E", "e");
 
-    protected ArrayList<Fights> fightList = new ArrayList<>();
+    protected ArrayList<Actions> actionList = new ArrayList<>();
+    protected SpriteManager spriteManager = new SpriteManager();
+    protected EntityFactory entityFactory = new EntityFactory(spriteManager);
+    protected  InfoBox infoBox;
+
+    //protected int delta;
 
     public void makeConfigFile(){
         Json json = new Json();
-        HashMap<String, ArrayList<Entity>> hm = new HashMap<>();
-        Sprite sprite;
+        //HashMap<String, Entity[]> hm = new HashMap<>();
+        GameSaveFile gsf = new GameSaveFile();
+        String sprite;
 
-        var tex = new Texture("mapTile_022.png");
+        //var tex = new Texture("mapTile_022.png");
         ArrayList<Entity> grounds = new ArrayList<>();
         for (int i = 0; i < 10; i++){
             for (int j = 0; j < 10; j++){
-                sprite = new Sprite(tex);
+                sprite = "mapTile_022.png";
                 PassableLand pl = new PassableLand(sprite, new Coords(i,j));
                 grounds.add(pl);
             }
@@ -46,20 +49,27 @@ public class Dungeon {
         var player = new Human(150,10, 10, 1, "Player",
                 new Coords(5,5),100,100, 1.5f,
                 1.5f, .09f, 1, 1);
-        player.setSprite(new Sprite(new Texture("knight.png")));
+        player.setSprite("knight.png");
         players.add(player);
 
         ArrayList<Entity> enemies = new ArrayList<>();
         Goblin goblin = new Goblin(50, 10, 13, 1 , "Goblin",
-                new Coords(0,0), 2, 30, 1.5f,
+                new Coords(5,6), 2, 30, 1.5f,
                 1.5f,.11f, 2, 2);
-        goblin.setSprite(new Sprite(new Texture("goblin.png")));
+        goblin.setSprite("goblin.png");
         enemies.add(goblin);
 
-        hm.put("player", players);
-        hm.put("enemies", enemies);
-        hm.put("ground", grounds);
-        String j = json.prettyPrint(hm);
+        ArrayList<Entity> items = new ArrayList<>();
+        Item item = new Sword();
+        item.setSprite("sword.png");
+        items.add(item);
+
+        gsf.setPlayers(players);
+        gsf.setEnemies(enemies);
+        gsf.setGrounds(grounds);
+        gsf.setItems(items);
+
+        String j = json.prettyPrint(gsf);
         var fh = Gdx.files.local("config.json");
         fh.writeString(j,false);
     }
@@ -97,29 +107,34 @@ public class Dungeon {
             var fh = Gdx.files.getFileHandle(configFile, Files.FileType.Local);
             String fs = fh.readString();
 
-            HashMap<String, ArrayList<Entity>> map = json.fromJson(HashMap.class, fs);
+            //HashMap<String, Array<Entity>> map = json.fromJson(HashMap.class, fs);
+            GameSaveFile gsf = json.fromJson(GameSaveFile.class, fs);
 
-            player = (LivingCreature) map.get("Player").get(0);
-            var enemies = map.get("Enemies");
-            var ground = map.get("Ground");
-            var items = map.get("Items");
+            player = (LivingCreature) gsf.players.get(0);
+            var enemies = gsf.getEnemies();
+            var ground = gsf.getGrounds();
+            var items = gsf.getItems();
 
-            world.addEntity(player,player.coords);
+            entityFactory.registerEntity(player.getName(), player.getSprite());
+
+            player.sprite = spriteManager.setSpriteFromFilename(player.sprite);
+            world.set(player.coords,player);
             for (var enemy : enemies) {
-                world.addEntity(enemy, enemy.getCoords());
+                entityFactory.registerEntity(enemy.getName(),  enemy.getSprite());
+                enemy.setSprite(spriteManager.setSpriteFromFilename(enemy.getSprite()));
+                world.set(enemy.getCoords(),enemy);
             }
             this.enemies = (ArrayList<LivingCreature>) enemies.stream().map(e -> (LivingCreature)e).collect(Collectors.toList());
             for (var g : ground){
-                world.addEntity(g, g.getCoords());
+                entityFactory.registerEntity(g.getName(), g.getSprite());
+                g.setSprite(spriteManager.setSpriteFromFilename(g.getSprite()));
+                world.set(g.getCoords(), g);
             }
             for (var item : items){
-                world.addEntity(item,item.getCoords());
+                entityFactory.registerEntity(item.getName(), item.getSprite());
+                item.setSprite(spriteManager.setSpriteFromFilename(item.getSprite()));
+                world.set(item.getCoords(), item);
             }
-
-
-            //TODO add all needed parameters to entities
-            //TODO allegiance, enemiesWith, moveDistance, etc
-            //TODO do so by using json writing
 
         } catch (Exception e) {
             System.out.println("Error reading config file " + configFile);
@@ -132,31 +147,150 @@ public class Dungeon {
             quit();
         }
     }
-    private ListIterator<Fights> fightIter = null;
-    public boolean hasNextFight() {
-        if (fightIter == null){
-            fightIter = fightList.listIterator();
+    private ListIterator<Actions> actionIter = null;
+    private boolean endOfActions = false;
+    public boolean hasNextAction() {
+        if (!endOfActions && actionIter == null){
+            actionIter = actionList.listIterator();
         }
-        var ret =  fightIter.hasNext();
+
+        var ret =  actionIter.hasNext();
         if (!ret){
-            fightIter = null;
+            endOfActions = true;
+
         }
         return ret;
     }
+    public void resetActions(){
+        actionList.clear();
+        actionIter = null;
+        endOfActions = false;
+    }
+/*    enum ActionReplayState {NEW_ACTION, CONTINUE_ACTION}
+    Actions currentAction;
+    int waitTime = 1000; // 1 second
+    int timeWaited;*/
 
-    public void showNextFight() {
-        Fights fight = fightIter.next();
-        if (fight.fightOccurred){
-            //TODO show fight info
+    StringBuilder actionStr = new StringBuilder();
+    //int actionCount = 0;
+    public boolean showNextAction() {
+        var currentAction = actionIter.next();
+        if (currentAction.moa == World.MoveOrAttack.MOVE) {
+            if (currentAction.moveSuccess) {
+                var e = currentAction.entity;
+                e.setCoords(currentAction.destination);
+                System.out.println(e.getName() + " moved to " + e.getCoords().toString());
+                //infoBox.setText(currentAction.entity.getName() + " moved");
+                // actionStr.append(actionCount++).append(": ").append(currentAction.entity.getName()).append(" moved. ");
+
+                // actionStr.append(actionCount++).append(": ").append(currentAction.entity.getName()).append(" blocked. ");
+            }
+            else {
+                var e = currentAction.entity;
+                System.out.println(e.getName() + " was blocked by " + currentAction.moveBlockedBy + " at " + e.getCoords().toString());
+            }
         }
-        if (fight.drop != null){
-            //TODO ask if player wants item
+        else {
+            if (currentAction.fightOccurred) {
+                currentAction.fightInfo.forEach(f -> {
+                    if (f.fightOccurred) {
+                        actionStr.append(f.attacker.getName()).append(" attacks ").append(f.defender.getName()).append(" with ")
+                                .append(f.attackDamage).append(" points of attack, dealing ").append(f.attackDamageTaken)
+                                .append(" points of damage!  ").append(f.defender.getName()).append(" counter attacks with ")
+                                .append(f.defenseDamage).append(" points of attack, dealing ").append(f.defenseDamageTaken)
+                                .append(" points of damage!  ");
+                        switch (f.result) {
+                            case defenderDied:
+                                world.clearDead(f.defender);
+                                actionStr.append(f.defender.getName()).append(" died. ");
+
+                                break;
+                            case attackerDied:
+                                actionStr.append(f.attacker.getName()).append(" died. ");
+                                world.clearDead(f.attacker);
+                                break;
+                            case bothDied:
+                                actionStr.append(f.attacker.getName()).append(" died. ");
+                                actionStr.append(f.defender.getName()).append(" died. ");
+                                world.clearDead(f.attacker);
+                                world.clearDead(f.defender);
+                                break;
+                            default:
+                        }
+                    }
+                });
+
+                System.out.println("No Fight Occurred involving " + currentAction.entity);
+            }
+
 
         }
+        boolean pickUpItem = false;
+        // TODO must be a better way to handle below
+
+            if (currentAction.pickupItemOpportunity || currentAction.fightInfo.stream().anyMatch(fi -> fi.drop != null)) {
+                Item drop;
+                if (currentAction.pickupItemOpportunity) {
+                    drop = currentAction.itemToPickUp;
+                } else {
+                    drop = Objects.requireNonNull(currentAction.fightInfo.stream().filter(fi -> fi.drop != null).findFirst().orElse(null)).drop;
+                }
+                actionStr.append(drop.getName()).append(" was dropped.");
+                dropItem = drop;
+                if (currentAction.entity instanceof HasInventory) {
+                    entityPickingUp = (HasInventory) currentAction.entity;
+                    entityPickingUpName = currentAction.entity.getName();
+                    actionStr.append(" Pick it up? ");
+                    pickUpItem = true;
+                }
+                else{
+                    declineItem();
+                }
+            }
+        infoBox.setText(actionStr.toString());
+        System.out.println(actionStr);
+        return pickUpItem;
     }
 
+    private HasInventory entityPickingUp;
+    private String entityPickingUpName;
+    private Item dropItem;
+
     public void showNothingThisRound() {
-        //TODO
+        actionStr.append("Nothing happened this turn");
+        infoBox.setText(actionStr.toString());
+        System.out.println(actionStr);
+    }
+
+    public void acceptItem(){
+        actionStr.append(entityPickingUpName).append(" picks up ").append(dropItem.getName());
+        entityPickingUp.storeItem(dropItem);
+        world.remove(dropItem);
+        infoBox.setText(actionStr.toString());
+        System.out.println(actionStr);
+        entityPickingUp = null;
+        entityPickingUpName = null;
+        dropItem = null;
+    }
+    public void declineItem(){
+        actionStr.append(dropItem).append( " was left on the ground. ");
+        this.world.set(dropItem.getCoords(), dropItem);
+        infoBox.setText(actionStr.toString());
+        System.out.println(actionStr);
+        entityPickingUp = null;
+        entityPickingUpName = null;
+        dropItem = null;
+    }
+
+    public void addAction(Actions p)
+    {
+        actionList.add(p);
+    }
+
+    public void displayPending(SpriteBatch batch) {
+        if (dropItem != null){
+            world.displaySprite(batch,dropItem);
+        }
     }
 
 /*    public void play() {
@@ -251,7 +385,7 @@ public class Dungeon {
         }
     }
 
-    public static @Nullable Item getDrop(Entity entity) {
+    public @Nullable Item getDrop(Entity entity) {
         if (entity instanceof LivingCreature) {
             var creature = (LivingCreature) entity;
             int bonus = creature.getAttackBonus();
@@ -260,9 +394,12 @@ public class Dungeon {
             if (damage > 40) {
                 //item quality stuff @TODO
             }
-
-            return new Sword(); //TODO return actual item
+            Item drop = (Item)entityFactory.getNewEntity("Sword");
+            System.out.println(entity.getName() + " dropped one " + drop.getName());
+//TODO return actual item
+            return drop;
         }
+        System.out.println("Nothing was dropped");
         return null;
     }
 
@@ -290,8 +427,14 @@ public class Dungeon {
 
         fight(fightdata, attacker, defender);
         var res = resolve(fightdata, attacker, defender);
-        this.fightList.add(fightdata);
+        //this.fightList.add(fightdata);
+        this.lastFightData = fightdata;
         return res;
+    }
+
+    private Fights lastFightData;
+    public Fights getLastFightData(){
+        return lastFightData;
     }
 
     protected void fight(Fights fightdata, @NotNull Entity attacker, @NotNull Entity defender) {
@@ -331,60 +474,6 @@ public class Dungeon {
         }
     }
 
-    protected static boolean promptForItem(@NotNull Item item, HasInventory entity) {
-        System.out.println("You see a " + item.getName() + " on the ground.  Pick it up?");
-        return getYesOrNo();
-    }
-
-    protected static boolean getYesOrNo() {
-
-        int attempts = 20;
-        while (attempts-- >= 0) {
-            System.out.println("Yes or No");
-            try {
-                String line = br.readLine();
-                if (YES_LINES.contains(line)) {
-                    return true;
-                } else if (NO_LINES.contains(line)) {
-                    return false;
-                }
-            } catch (IOException e) {
-                return false;
-            }
-        }
-        System.out.println("Too Many Bad Inputs in getYesOrNo. Quitting");
-        quit();
-        return false;
-    }
-
-    protected static cardinalDirections getNSWE(String prompt, boolean north, boolean south, boolean east, boolean west) {
-        int attempts = 20;
-        while (attempts-- >= 0) {
-            System.out.println(prompt);
-            try {
-                String line = br.readLine();
-                if (north && NORTH_LINES.contains(line)) {
-                    return cardinalDirections.NORTH;
-                } else if (south && SOUTH_LINES.contains(line)) {
-                    return cardinalDirections.SOUTH;
-                } else if (west && WEST_LINES.contains(line)) {
-                    return cardinalDirections.WEST;
-                } else if (east && EAST_LINES.contains(line)) {
-                    return cardinalDirections.EAST;
-                }
-            } catch (IOException e) {
-                System.out.println("IO EXCEPTION READING DIRECTION");
-                quit();
-                return cardinalDirections.NORTH;
-            }
-        }
-        System.out.println("Too Many Bad Inputs in getYesOrNo. Quitting");
-        quit();
-        return cardinalDirections.NORTH;
-
-    }
-
-    protected static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     protected void generateMap(int x, int y) {
         world = new World(this, x, y);
