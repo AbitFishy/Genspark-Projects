@@ -1,6 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 
 public class EntityFactory {
@@ -17,7 +16,7 @@ public class EntityFactory {
     }
 
     public Entity getNewEntity(String name) {
-        Entity entity = null;
+        Entity entity;
         switch (name) {
             case "Player":
             case "Human":

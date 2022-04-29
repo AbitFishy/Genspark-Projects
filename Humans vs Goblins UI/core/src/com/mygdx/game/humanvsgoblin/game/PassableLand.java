@@ -1,6 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class PassableLand implements Entity {
     public PassableLand(){
@@ -21,7 +20,7 @@ public class PassableLand implements Entity {
     public Coords getCoords() {
         return coords;
     }
-    protected Coords coords = new Coords();
+    protected Coords coords;
     @Override
     public void setCoords(Coords coords) {
         this.coords = coords;

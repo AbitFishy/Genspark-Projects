@@ -6,6 +6,7 @@ buildscript {
         mavenCentral()
         gradlePluginPortal()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven {url "https://repo1.maven.org/maven2/"}
         google()
     }
     dependencies {
@@ -28,6 +29,8 @@ allprojects {
         ashleyVersion = '1.7.4'
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.2.1'
+        junitVersion = '5.8.2'
+        mockitoVersion = '4.2.0'
     }
 
     repositories {
@@ -38,6 +41,7 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
         maven { url "https://jitpack.io" }
+        maven {url "https://repo1.maven.org/maven2/"}
     }
 }
 
@@ -74,7 +78,73 @@ project(":core") {
 
 
     dependencies {
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
+        implementation  "com.badlogicgames.gdx:gdx:$gdxVersion"
+        testImplementation  "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        // https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx-backend-headless
+        //implementation group: 'com.badlogicgames.gdx', name: 'gdx-backend-headless', version: '1.10.0'
+        testImplementation "org.mockito:mockito-core:$mockitoVersion"
+
+        implementation  'org.jetbrains:annotations:23.0.0'
+        testImplementation 'org.jetbrains:annotations:23.0.0'
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+
     }
 }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {     // This is for logging and can be removed.
+        events("passed", "skipped", "failed")
+    }
+}
+
+/*
+project(":tests") {
+    apply plugin: "java-library"
+
+
+    sourceSets.test.java.srcDirs = ["src/"]
+
+    //testImplementation "junit:junit:4.11"
+
+
+    dependencies {
+	
+*
+		 * If you do have some classes to test in os specific code you may want to uncomment
+		 * some of these lines.
+		 * 
+		 * BUT: I recommend to create seperate test sub projects for each platform. Trust me :)
+		 * 
+
+
+	
+//        //compile project(":android")
+//        //compile project(":html")
+//        compile project(":desktop")
+        
+        
+//        if(System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
+//        	compile project(":ios")
+//        }
+        
+        //compile project(":core")
+        implementation project(":core")
+        //compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+        implementation 'com.badlogicgames.gdx:gdx:$gdxVersion'
+        implementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "org.mockito:mockito-all:1.10.19"
+
+        implementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "org.mockito:mockito-all:1.10.19"
+    }
+}
+*/

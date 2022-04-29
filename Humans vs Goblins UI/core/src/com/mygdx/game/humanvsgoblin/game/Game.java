@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import org.jetbrains.annotations.NotNull;
 
 //import java.util.HashSet;
@@ -24,7 +22,7 @@ public class Game extends ApplicationAdapter {
 	String stateStr = "Starting";
 	InfoBox infoBox;
 
-	enum State {DECIDE_PATH, CALCULATE_MOVES, PICK_TARGET, ANIMATE_MOVEMENT, ANIMATE_FIGHT, SHOW_ACTION, MENU, PICK_UP_ITEM}
+	enum State {DECIDE_PATH, CALCULATE_MOVES, PICK_TARGET, ANIMATE_MOVEMENT, ANIMATE_FIGHT, SHOW_ACTION, MENU, PICK_UP_ITEM, PLAYER_DIED, PLAYER_WINS, END_SCREEN}
 
 	protected State currentState;
 	
@@ -43,7 +41,7 @@ public class Game extends ApplicationAdapter {
 		currentState = State.DECIDE_PATH;
 		dm.newMove(dg.player.getCoords());
 		font = new BitmapFont();
-		infoBox = new InfoBox(dg.spriteManager, batch);
+		infoBox = new InfoBox(dg.spriteManager);
 		dg.infoBox = infoBox;
 		//Gdx.input.setInputProcessor(new GameInputProcessor());
 	}
@@ -72,6 +70,14 @@ public class Game extends ApplicationAdapter {
 		batch.end();
 
 		Dungeon.cardinalDirections dir;
+
+		if (dg.player.isDead()){
+			currentState = State.PLAYER_DIED;
+			dg.player.sprite = dg.spriteManager.setSpriteFromFilename("knightdied.png");//TODO
+		}
+		else if (dg.hasWon()){
+			currentState = State.PLAYER_WINS;
+		}
 
 		switch (currentState) {
 			case DECIDE_PATH:
@@ -103,7 +109,7 @@ public class Game extends ApplicationAdapter {
 			case PICK_TARGET:
 				stateStr = "Pick Target";
 				dir = getCardinalDirection();
-				dm.highlightTarget(dg.player,dm.getCurrentProspectivePosition(), dir);
+				dm.highlightTarget(dir);
 				if (hasKeyJustBeenPressed(Input.Keys.ENTER)) {
 					currentState = State.CALCULATE_MOVES;
 				}
@@ -134,7 +140,7 @@ public class Game extends ApplicationAdapter {
 					else {
 						dg.resetActions();
 						currentState = State.DECIDE_PATH;
-						dg.world.clearDead(); //dead are also removed in showAction
+ 						dg.world.clearDead(); //dead are also removed in showAction
 						dm.newMove(dg.player.getCoords());
 					}
 				}
@@ -153,9 +159,38 @@ public class Game extends ApplicationAdapter {
 				break;
 			case MENU:
 				stateStr = "Menu";
+				infoBox.setText("Press \"Q\" to Quit");
+				if (hasKeyJustBeenPressed(Input.Keys.Q)) {
+					Gdx.app.exit();
+				}
+				//TODO menu?
 				break;
 			case SHOW_ACTION:
-
+				break;
+			case PLAYER_DIED:
+				stateStr = "Lose";
+				infoBox.setText("***********************          YOU LOSE        *************************");
+				infoBox.textArea.appendText("\n                                                                                                               Press \"R\"");
+				currentState = State.END_SCREEN;
+				//TODO lose screen
+				dg.player.health = 1;
+				break;
+			case PLAYER_WINS:
+				stateStr = "Win";
+				infoBox.setText("!!!!!!!!!!!!!!!!!!!!!!!           YOU WIN           !!!!!!!!!!!!!!!!!!!!!!");
+				infoBox.textArea.appendText("\n                                                                                                               Press \"R\"");
+				currentState = State.END_SCREEN;
+				dg.enemies.add(new LivingCreature());
+				//TODO win Screen;
+				break;
+			case END_SCREEN:
+				if (hasKeyJustBeenPressed(Input.Keys.R)){
+					currentState = State.MENU;
+				}
+				dm.newMove(Coords.nullCoords);
+				dg.world.clearDead();
+				//dm.targetPosition = Coords.nullCoords;
+				break;
 			default:
 				stateStr = "Default Case";
 		}

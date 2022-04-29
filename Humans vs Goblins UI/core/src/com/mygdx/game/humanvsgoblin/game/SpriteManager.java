@@ -12,11 +12,14 @@ public class SpriteManager {
         textures.put(defaultSprite, new Texture(defaultSprite));
         sprites.put(defaultSprite, new Sprite(textures.get(defaultSprite)));
     }
+    public final HashMap<String, Sprite> getSprites(){
+        return sprites;
+    }
 
     protected HashMap<String, Sprite> sprites = new HashMap<>();
     protected HashMap<String, Texture> textures = new HashMap<>();
     //TODO textures to become regions of sprite sheet
-    protected String defaultSprite = "";
+    protected String defaultSprite;
     protected int count = 0;
     /**
      * @param filename filename of texture

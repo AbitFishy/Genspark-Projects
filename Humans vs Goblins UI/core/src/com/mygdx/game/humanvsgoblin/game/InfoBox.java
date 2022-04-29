@@ -1,19 +1,11 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import static com.badlogic.gdx.graphics.Color.RED;
 
@@ -31,33 +23,33 @@ public class InfoBox {
     float width = 640;
     BitmapFont font = new BitmapFont();
     String displayText = "";
-    SpriteManager sm = null;
+    SpriteManager sm;
     String sprite = "blueoverlay.png";
 
-    String cursorSprite = "";
-    String selectionSprite = "";
+    String cursorSprite;
+    String selectionSprite;
     String backgroundSprite = "blank.png";
     //Table table;
-    Label label;
+    //Label label;
 
 /*    SpriteDrawable cursorDraw = null;
     SpriteDrawable selectDraw = null;
     SpriteDrawable backgrDraw = null;*/
-    TextArea textArea = null;
+    TextArea textArea;
 
     //Texture texture;
     //Pixmap pixmap;
 
-    public InfoBox(SpriteBatch batch){
+/*    public InfoBox(SpriteBatch batch){
 
         //pixmap = new Pixmap((int)(width*xScale), (int)(height*yScale), Pixmap.Format.RGBA8888);
         //pixmap.setColor(255,255,255,0);
         //pixmap.fillRectangle(0, 0, (int)(width*xScale), (int)(height*yScale));
         //texture = new Texture(pixmap);
 
-    }
+    }*/
 
-    public InfoBox(SpriteManager spriteManager, SpriteBatch batch){
+    public InfoBox(SpriteManager spriteManager){
         //viewport = new FitViewport(640,640,new OrthographicCamera());
         //stage = new Stage(viewport, batch);
 /*        table = new Table();
@@ -69,8 +61,8 @@ public class InfoBox {
         this.selectionSprite = sm.setSpriteFromFilename(sprite);
         this.backgroundSprite = sm.setSpriteFromFilename(backgroundSprite);
 
-        label = new Label("", new Label.LabelStyle(font, RED));
-        label.setPosition(0,690);
+        //label = new Label("", new Label.LabelStyle(font, RED));
+        //label.setPosition(0,690);
 
         textArea = new TextArea("", new TextField.TextFieldStyle(font, RED, new SpriteDrawable(sm.retrieveSprite(cursorSprite)),
                 new SpriteDrawable(sm.retrieveSprite(selectionSprite)), new SpriteDrawable(sm.retrieveSprite(backgroundSprite))));
@@ -80,7 +72,6 @@ public class InfoBox {
         textArea.setVisible(true);
         textArea.setTouchable(Touchable.disabled);
         textArea.setLayoutEnabled(false);
-
 
     }
 

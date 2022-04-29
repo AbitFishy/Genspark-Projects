@@ -176,10 +176,7 @@ public class LivingCreature implements Creature, HasInventory{
     @Override
     public boolean canShareTileWith(Entity other) {
         if (other instanceof LivingCreature){
-            if (this.equals(other)){
-                return true;
-            }
-            return false;
+            return this.equals(other);
         }
          return !(other.isBlocking(this));
 
@@ -203,8 +200,8 @@ public class LivingCreature implements Creature, HasInventory{
     protected char displayChar;
 
     @Override
-    public boolean storeItem(Item item) {
-        return inventory.addItem(item);
+    public void storeItem(Item item) {
+        inventory.addItem(item);
     }
 
     @Override
@@ -213,8 +210,8 @@ public class LivingCreature implements Creature, HasInventory{
     }
 
     protected <T extends LivingCreature>  ConflictData attackLivingCreature(T g, boolean attackerOrDefender){
-        int damageOutput = 0;
-        int receivedDamage = 0;
+        int damageOutput;
+        int receivedDamage;
         int bonus = getAttackBonus();
         if (attackerOrDefender) {
             damageOutput = (int) getDamage(bonus, attackBonus, critDam, critRate);
@@ -237,14 +234,12 @@ public class LivingCreature implements Creature, HasInventory{
 
     protected int getAttackBonus() {
         var attackItems = inventory.retrieveAllOfType(AttackItem.class);
-        int bonus = attackItems.stream().map(AttackItem::getAttack).reduce(Integer::sum).orElse(0);
-        return bonus;
+        return attackItems.stream().map(AttackItem::getAttack).reduce(Integer::sum).orElse(0);
     }
 
     protected int getDefenseBonus() {
         var defenseItems = inventory.retrieveAllOfType(DefenseItem.class);
-        int bonus = defenseItems.stream().map(DefenseItem::getDefense).reduce(Integer::sum).orElse(0);
-        return bonus;
+        return defenseItems.stream().map(DefenseItem::getDefense).reduce(Integer::sum).orElse(0);
     }
 
     protected <T extends Item> ConflictData attackItem(T item, boolean attackerOrDefender){

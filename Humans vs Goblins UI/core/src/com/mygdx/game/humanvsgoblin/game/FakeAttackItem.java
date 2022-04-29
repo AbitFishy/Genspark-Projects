@@ -1,10 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
-import java.io.IOException;
-import java.io.Writer;
-
 public class FakeAttackItem implements AttackItem {
 
     protected String name = "Sword Illusion";

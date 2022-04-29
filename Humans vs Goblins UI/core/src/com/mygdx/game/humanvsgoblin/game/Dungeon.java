@@ -15,12 +15,23 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 
 public class Dungeon {
-    protected  static final Set<String> YES_LINES = Set.of("yes", "YES", "Yes", "Y", "y");
+/*    protected  static final Set<String> YES_LINES = Set.of("yes", "YES", "Yes", "Y", "y");
     protected  static final Set<String> NO_LINES = Set.of("no", "NO", "No", "N", "n");
     protected  static final Set<String> NORTH_LINES = Set.of("north", "NORTH", "North", "N", "n");
     protected  static final Set<String> SOUTH_LINES = Set.of("south", "SOUTH", "South", "S", "s");
     protected  static final Set<String> WEST_LINES = Set.of("west", "WEST", "West", "W", "w");
-    protected  static final Set<String> EAST_LINES = Set.of("east", "EAST", "East", "E", "e");
+    protected  static final Set<String> EAST_LINES = Set.of("east", "EAST", "East", "E", "e");*/
+
+
+    public final LivingCreature getPlayer(){
+        return player;
+    }
+    public final ArrayList<LivingCreature> getEnemies(){
+        return enemies;
+    }
+    public final SpriteManager getSpriteManager(){
+        return spriteManager;
+    }
 
     protected ArrayList<Actions> actionList = new ArrayList<>();
     protected SpriteManager spriteManager = new SpriteManager();
@@ -29,7 +40,7 @@ public class Dungeon {
 
     //protected int delta;
 
-    public void makeConfigFile(){
+    public void makeConfigFile(String fileName){
         Json json = new Json();
         //HashMap<String, Entity[]> hm = new HashMap<>();
         GameSaveFile gsf = new GameSaveFile();
@@ -70,7 +81,7 @@ public class Dungeon {
         gsf.setItems(items);
 
         String j = json.prettyPrint(gsf);
-        var fh = Gdx.files.local("config.json");
+        var fh = Gdx.files.local(fileName);
         fh.writeString(j,false);
     }
 
@@ -110,7 +121,7 @@ public class Dungeon {
             //HashMap<String, Array<Entity>> map = json.fromJson(HashMap.class, fs);
             GameSaveFile gsf = json.fromJson(GameSaveFile.class, fs);
 
-            player = (LivingCreature) gsf.players.get(0);
+            player = (LivingCreature) gsf.getPlayers().get(0);
             var enemies = gsf.getEnemies();
             var ground = gsf.getGrounds();
             var items = gsf.getItems();
@@ -138,7 +149,7 @@ public class Dungeon {
 
         } catch (Exception e) {
             System.out.println("Error reading config file " + configFile);
-            System.out.println(e);
+            e.printStackTrace();
             quit();
         }
 
@@ -178,8 +189,9 @@ public class Dungeon {
         if (currentAction.moa == World.MoveOrAttack.MOVE) {
             if (currentAction.moveSuccess) {
                 var e = currentAction.entity;
-                e.setCoords(currentAction.destination);
-                System.out.println(e.getName() + " moved to " + e.getCoords().toString());
+                //e.setCoords(currentAction.destination);
+                world.set(currentAction.destination,e); //TODO decide if this is actually when the move happens
+                actionStr.append(e.getName()).append(" moved to ").append(e.getCoords().toString());
                 //infoBox.setText(currentAction.entity.getName() + " moved");
                 // actionStr.append(actionCount++).append(": ").append(currentAction.entity.getName()).append(" moved. ");
 
@@ -187,7 +199,7 @@ public class Dungeon {
             }
             else {
                 var e = currentAction.entity;
-                System.out.println(e.getName() + " was blocked by " + currentAction.moveBlockedBy + " at " + e.getCoords().toString());
+                actionStr.append(e.getName()).append(" was blocked by ").append( currentAction.moveBlockedBy).append(" at ").append(e.getCoords().toString());
             }
         }
         else {
@@ -202,28 +214,30 @@ public class Dungeon {
                         switch (f.result) {
                             case defenderDied:
                                 world.clearDead(f.defender);
+                                if (f.defender instanceof LivingCreature) enemies.remove(f.defender);
                                 actionStr.append(f.defender.getName()).append(" died. ");
 
                                 break;
                             case attackerDied:
                                 actionStr.append(f.attacker.getName()).append(" died. ");
                                 world.clearDead(f.attacker);
+                                if (f.attacker instanceof LivingCreature) enemies.remove(f.attacker);
                                 break;
                             case bothDied:
                                 actionStr.append(f.attacker.getName()).append(" died. ");
                                 actionStr.append(f.defender.getName()).append(" died. ");
                                 world.clearDead(f.attacker);
+                                if (f.attacker instanceof LivingCreature) enemies.remove(f.attacker);
                                 world.clearDead(f.defender);
+                                if (f.defender instanceof LivingCreature) enemies.remove(f.defender);
                                 break;
                             default:
                         }
                     }
                 });
-
-                System.out.println("No Fight Occurred involving " + currentAction.entity);
+            }else {
+                actionStr.append("No Fight Occurred involving ").append(currentAction.entity);
             }
-
-
         }
         boolean pickUpItem = false;
         // TODO must be a better way to handle below
@@ -248,7 +262,7 @@ public class Dungeon {
                 }
             }
         infoBox.setText(actionStr.toString());
-        System.out.println(actionStr);
+        System.out.println("<<" + actionStr + ">>");
         return pickUpItem;
     }
 
@@ -259,7 +273,7 @@ public class Dungeon {
     public void showNothingThisRound() {
         actionStr.append("Nothing happened this turn");
         infoBox.setText(actionStr.toString());
-        System.out.println(actionStr);
+        System.out.println("<<" + actionStr + ">>");
     }
 
     public void acceptItem(){
@@ -267,7 +281,7 @@ public class Dungeon {
         entityPickingUp.storeItem(dropItem);
         world.remove(dropItem);
         infoBox.setText(actionStr.toString());
-        System.out.println(actionStr);
+        System.out.println("<<" + actionStr + ">>");
         entityPickingUp = null;
         entityPickingUpName = null;
         dropItem = null;
@@ -276,7 +290,7 @@ public class Dungeon {
         actionStr.append(dropItem).append( " was left on the ground. ");
         this.world.set(dropItem.getCoords(), dropItem);
         infoBox.setText(actionStr.toString());
-        System.out.println(actionStr);
+        System.out.println("<<" + actionStr + ">>");
         entityPickingUp = null;
         entityPickingUpName = null;
         dropItem = null;
@@ -293,6 +307,9 @@ public class Dungeon {
         }
     }
 
+    public boolean hasWon() {
+        return  !player.isDead() && enemies.size() == 0;
+    }
 /*    public void play() {
         System.out.println("HUMANS VS GOBLINS!");
 
@@ -387,16 +404,16 @@ public class Dungeon {
 
     public @Nullable Item getDrop(Entity entity) {
         if (entity instanceof LivingCreature) {
-            var creature = (LivingCreature) entity;
-            int bonus = creature.getAttackBonus();
-            int damage = (int) creature.getDamage(bonus, 1, creature.getCritDam(), creature.getCritRate());
+            //var creature = (LivingCreature) entity;
+            //int bonus = creature.getAttackBonus();
+            //int damage = (int) creature.getDamage(bonus, 1, creature.getCritDam(), creature.getCritRate());
 
-            if (damage > 40) {
+/*            if (damage > 40) {
                 //item quality stuff @TODO
-            }
+            }*/
             Item drop = (Item)entityFactory.getNewEntity("Sword");
             System.out.println(entity.getName() + " dropped one " + drop.getName());
-//TODO return actual item
+//TODO return items based on various criteria, not just the same sword
             return drop;
         }
         System.out.println("Nothing was dropped");

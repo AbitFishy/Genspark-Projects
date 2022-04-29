@@ -15,5 +15,5 @@ public class ConflictData {
     int damageTaken;
     boolean actualFight;
 
-    Item item = null;
+    Item item;
 }

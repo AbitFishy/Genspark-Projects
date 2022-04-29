@@ -1,0 +1,2 @@
+Human 5 5
+Goblin 5 6

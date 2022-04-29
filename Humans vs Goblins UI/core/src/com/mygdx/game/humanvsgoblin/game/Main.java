@@ -1,3 +1,4 @@
+/*
 package com.mygdx.game.humanvsgoblin.game;
 
 public class Main {
@@ -6,3 +7,4 @@ public class Main {
 
     }
 }
+*/

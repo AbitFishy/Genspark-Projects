@@ -17,30 +17,13 @@ players: [
 enemies: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 50
-		attack: 40
-		defense: 13
-		coords: {
-			x: 1
-			y: 1
-		}
-		movePriority: 2
-		inventory: {}
-		sprite: goblin.png
-		moveSpeed: 30
-		critRate: 0.11
-		allegiance: 2
-		enemiesWith: 2
-	}
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 5
-		attack: 4
-		defense: 13
+		health: 500
 		coords: {
 			x: 5
-			y: 6
+			y: 7
 		}
+		attack: 20
+		defense: 20
 		movePriority: 2
 		inventory: {}
 		sprite: goblin.png
@@ -49,24 +32,7 @@ enemies: [
 		allegiance: 2
 		enemiesWith: 2
 	}
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 10
-		attack: 14
-		defense: 13
-		coords: {
-			x: 3
-			y: 4
-		}
-		movePriority: 2
-		inventory: {}
-		sprite: goblin.png
-		moveSpeed: 30
-		critRate: 0.11
-		allegiance: 2
-		enemiesWith: 2
-	}
-],
+]
 grounds: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.PassableLand
@@ -846,30 +812,6 @@ grounds: [
 			y: 9
 		}
 		sprite: mapTile_022.png
-	}
-]
-items: [
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Sword
-		sprite: sword.png
-	}
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Shield
-		sprite: shield.png,
-		defense: 20,
-		coords: {
-			x: 7
-			y: 9
-		}
-	}
-	{
-		class: com.mygdx.game.humanvsgoblin.game.Shield
-		sprite: shield.png,
-		defense: 20,
-		coords: {
-			x: 2
-			y: 9
-		}
 	}
 ]
 }

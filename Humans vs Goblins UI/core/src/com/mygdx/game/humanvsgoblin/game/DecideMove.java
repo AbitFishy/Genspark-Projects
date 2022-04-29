@@ -45,6 +45,7 @@ public class DecideMove {
     Coords getCurrentProspectivePosition(){
         return path.get(path.size() -1);
     }
+
     void continueMove(final Dungeon.cardinalDirections direction){
         if (direction == Dungeon.cardinalDirections.NONE){
             return;
@@ -99,7 +100,8 @@ public class DecideMove {
         }
     }
 
-    public void highlightTarget(final Entity attacker, final Coords attackCoords, final Dungeon.cardinalDirections direction){
+    public void highlightTarget(final Dungeon.cardinalDirections direction){
+        Coords attackCoords = getCurrentProspectivePosition();
         if (direction == Dungeon.cardinalDirections.NONE){
             return;
         }
@@ -111,7 +113,7 @@ public class DecideMove {
         else {
             var prospective = applyDirection(attackCoords, direction);
             var tile = dungeon.world.get(prospective);
-            if (tile != null && tile.stream().anyMatch(attacker::isEnemy)) {
+            if (tile != null && tile.stream().anyMatch(mover::isEnemy)) {
                 targetPosition = prospective;
             }
         }

@@ -2,7 +2,7 @@
 players: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Human
-		health: 150
+		health: 15
 		coords: {
 			x: 5
 			y: 5
@@ -17,13 +17,13 @@ players: [
 enemies: [
 	{
 		class: com.mygdx.game.humanvsgoblin.game.Goblin
-		health: 50
+		health: 500
 		coords: {
 			x: 5
 			y: 6
 		}
-		attack: 10
-		defense: 13
+		attack: 20
+		defense: 20
 		movePriority: 2
 		inventory: {}
 		sprite: goblin.png

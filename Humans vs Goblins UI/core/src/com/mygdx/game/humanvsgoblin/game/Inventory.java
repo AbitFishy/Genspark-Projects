@@ -1,10 +1,7 @@
 package com.mygdx.game.humanvsgoblin.game;
 
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 

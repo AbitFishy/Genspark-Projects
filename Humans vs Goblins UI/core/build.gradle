@@ -2,17 +2,12 @@ plugins {
     id("java-library")  //  id("application")
 }
 dependencies {
-    implementation 'org.jetbrains:annotations:23.0.0'
+
 }
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.test.java.srcDirs = [ "src/test/java/" ]
 
 eclipse.project.name = appName + "-core"
-
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
-    }
-}
 

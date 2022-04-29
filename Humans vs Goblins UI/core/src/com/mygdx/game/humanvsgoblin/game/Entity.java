@@ -1,9 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-
-
 public interface Entity{
     String getName();
     Coords getCoords();

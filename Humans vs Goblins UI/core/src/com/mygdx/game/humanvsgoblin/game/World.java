@@ -1,6 +1,5 @@
 package com.mygdx.game.humanvsgoblin.game;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -8,14 +7,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class World {
 
     protected final int x;
     protected final int y;
     protected  final Dungeon dungeon;
-    protected Texture texture;
     protected int tileSize = 64;
 
     public void remove(Item toBeRemoved) {
@@ -89,11 +86,12 @@ public class World {
         }
 
     }
-    public void addEntity(Entity entity, Coords toCoords){
+    //TODO below doesn't seem to work, probably not actually needed, compared to "set"
+/*    public void addEntity(Entity entity, Coords toCoords){
         if (entity != null){
             toBeMoved.add(new Actions(entity, toCoords,toCoords, MoveOrAttack.MOVE));
         }
-    }
+    }*/
     protected boolean validSpace(Coords coords){
         return coords.x >= 0 && coords.x < x && coords.y >= 0 && coords.y < y;
     }
@@ -134,9 +132,6 @@ public class World {
     }
     protected void set(Coords coords, Entity entity){
         set(coords.x,coords.y ,entity);
-        if (entity != null) {
-            entity.setCoords(coords);
-        }
     }
     protected void set(int x, int y, Entity entity){
         if (x >= 0 && x < this.x
@@ -144,17 +139,20 @@ public class World {
         {
             grid.get(x).get(y).add(entity);
         }
+        if (entity != null) {
+            entity.setCoords(new Coords(x,y)); //TODO NO!
+        }
     }
 
-    private HashSet<Entity> diedThisRound = new HashSet<>();
+    private final HashSet<Entity> diedThisRound = new HashSet<>();
 
-    public HashSet<Entity> move(){
+    public void move(){
         //toBeMoved.sort(Comparator.comparingInt(lhs -> lhs.first.getMovePriority()));
 
         toBeMoved.sort((lhs,rhs) -> -1 * Integer.compare(lhs.entity.getMovePriority(), rhs.entity.getMovePriority()));
 
         HashSet<Entity> dead = new HashSet<>();
-        HashSet<Entity> newEnts= new HashSet<>();
+        //HashSet<Entity> newEnts= new HashSet<>();
 
         for (var iter = toBeMoved.listIterator(); iter.hasNext(); ){
             var p = iter.next();
@@ -249,8 +247,7 @@ public class World {
         //TODO remove dead from calculations here, but keep them *somewhere* so they
         //TODO still display until their death is shown/(animated)
         diedThisRound.addAll(dead);
-        newEnts.forEach(e -> moveEntity(e,e.getCoords(),e.getCoords(),MoveOrAttack.MOVE));
-        return dead;
+        //newEnts.forEach(e -> moveEntity(e,e.getCoords(),e.getCoords(),MoveOrAttack.MOVE));
     }
 
     private void addIfReallyDead( Set<Entity> theDead,Entity entity){
@@ -262,9 +259,7 @@ public class World {
     public void displayGrid(SpriteBatch batch) {
 
         grid.stream().flatMap(ArrayList<ArrayList<Entity>>::stream).flatMap(ArrayList<Entity>::stream)
-                .sorted(Comparator.comparingInt(Entity::getMovePriority)).forEach(d-> {
-                    displaySprite(batch, d);
-                });
+                .sorted(Comparator.comparingInt(Entity::getMovePriority)).forEach(d-> displaySprite(batch, d));
 
     }
 

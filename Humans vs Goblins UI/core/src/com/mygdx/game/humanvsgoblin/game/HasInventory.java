@@ -1,6 +1,6 @@
 package com.mygdx.game.humanvsgoblin.game;
 
 public interface HasInventory {
-    boolean storeItem(Item item);
+    void storeItem(Item item);
     Item retrieveItem(String itemName);
 }
